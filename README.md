@@ -26,7 +26,7 @@ A **robust, modular Python tool** that automates extraction of key financial dat
 
 ---
 
-## 🏦 Supported Banks
+## Supported Banks
 
 * Chase Bank
 * HDFC Bank
