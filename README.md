@@ -77,12 +77,7 @@ This design ensures:
 
 ## Installation
 
-### Clone the Repository
 
-```bash
-git clone https://github.com/yourusername/statement-parser.git
-cd statement-parser
-```
 
 ### Install Dependencies
 
