@@ -1,8 +1,8 @@
-# 💳 Multi-Bank Credit Card Statement Parser
+# Multi-Bank Credit Card Statement Parser
 
 A robust, modular Python tool designed to automate the extraction of key financial data from credit card statements. Built with a **Strategy Design Pattern**, it automatically detects the bank provider and dispatches the PDF to the appropriate parser to extract structured data.
 
-## 🚀 Features
+## Features
 
 * **Auto-Detection:** Automatically identifies the bank issuer (Chase, HDFC, Amex, SBI, Citi) from the raw PDF text.
 * **Modular Architecture:** Uses an extensible class-based structure, making it easy to add support for new banks without breaking existing logic.
@@ -13,13 +13,13 @@ A robust, modular Python tool designed to automate the extraction of key financi
     * Transaction Summaries
 * **Layout Preservation:** Utilizes `pdfplumber` to maintain visual layout accuracy for reliable table parsing.
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 * **Language:** Python 3.x
 * **Core Library:** `pdfplumber` (Superior table extraction compared to PyPDF2)
 * **Logic:** Regular Expressions (Regex) for pattern matching
 
-## 📂 Project Structure
+## Project Structure
 
 ```text
 ├── sure-financials.py       # Main script (Router & Parser Logic)
