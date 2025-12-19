@@ -21,13 +21,12 @@ A robust, modular Python tool designed to automate the extraction of key financi
 
 ## Project Structure
 
-```text
+
 ├── sure-financials.py       # Main script (Router & Parser Logic)
 ├── requirements.txt         # Dependencies
-├── README.md                # Documentation
-└── statements/              # Folder for input PDFs
-    ├── chase_statement.pdf
-    └── hdfc_statement.pdf
+├── README.md                # Documentation    
+├── chase_statement.pdf
+└── hdfc_statement.pdf
 
 Architecture
 This project implements the Strategy Pattern. The BaseStatementParser defines the interface, while specific bank classes (e.g., ChaseParser, HDFCParser) implement the unique extraction logic for their respective formats.
