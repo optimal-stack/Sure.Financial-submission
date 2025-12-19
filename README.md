@@ -1,59 +1,130 @@
 # Multi-Bank Credit Card Statement Parser
 
-A robust, modular Python tool designed to automate the extraction of key financial data from credit card statements. Built with a **Strategy Design Pattern**, it automatically detects the bank provider and dispatches the PDF to the appropriate parser to extract structured data.
+A **robust, modular Python tool** that automates extraction of key financial data from credit card statements (PDFs). The system is built using the **Strategy Design Pattern**, enabling automatic bank detection and dispatching to the appropriate parser for reliable, structured data extraction.
 
-## Features
+---
 
-* **Auto-Detection:** Automatically identifies the bank issuer (Chase, HDFC, Amex, SBI, Citi) from the raw PDF text.
-* **Modular Architecture:** Uses an extensible class-based structure, making it easy to add support for new banks without breaking existing logic.
-* **Key Data Extraction:** Parses critical fields including:
-    * Payment Due Date & Billing Cycle
-    * Total Balance / Amount Due
-    * Card Variant & Last 4 Digits
-    * Transaction Summaries
-* **Layout Preservation:** Utilizes `pdfplumber` to maintain visual layout accuracy for reliable table parsing.
+## Key Features
+
+* **Automatic Bank Detection**
+  Identifies the issuing bank directly from raw PDF text.
+
+* **Strategy Pattern Architecture**
+  Clean, extensible design that allows adding new banks without modifying existing logic.
+
+* **Critical Data Extraction**
+  Extracts essential credit card statement details:
+
+  * Payment Due Date
+  * Billing Cycle
+  * Total Balance / Amount Due
+  * Card Variant & Last 4 Digits
+  * Transaction Summary
+
+* **Layout-Preserving PDF Parsing**
+  Uses `pdfplumber` for accurate text and table extraction while preserving layout structure.
+
+---
+
+## 🏦 Supported Banks
+
+* Chase Bank
+* HDFC Bank
+* American Express (Amex)
+* SBI Card
+* Citi Bank
+
+*(New banks can be added easily by implementing a new parser class.)*
+
+---
 
 ## Tech Stack
 
 * **Language:** Python 3.x
-* **Core Library:** `pdfplumber` (Superior table extraction compared to PyPDF2)
-* **Logic:** Regular Expressions (Regex) for pattern matching
+* **PDF Parsing:** `pdfplumber`
+* **Pattern Matching:** Regular Expressions (Regex)
+* **Architecture:** Strategy Design Pattern
+
+---
 
 ## Project Structure
 
-
+```bash
 ├── sure-financials.py       # Main script (Router & Parser Logic)
-├── requirements.txt         # Dependencies
-├── README.md                # Documentation    
-├── chase_statement.pdf
-└── hdfc_statement.pdf
+├── requirements.txt         # Project dependencies
+├── README.md                # Documentation
+├── chase_statement.pdf      # Sample Chase statement
+└── hdfc_statement.pdf       # Sample HDFC statement
+```
 
-Architecture
-This project implements the Strategy Pattern. The BaseStatementParser defines the interface, while specific bank classes (e.g., ChaseParser, HDFCParser) implement the unique extraction logic for their respective formats.
+---
 
-Installation
-Clone the repository:
-git clone [https://github.com/yourusername/statement-parser.git](https://github.com/yourusername/statement-parser.git)
+## Architecture Overview
+
+This project follows the **Strategy Design Pattern**:
+
+* `BaseStatementParser` defines a common interface for all bank parsers.
+* Each bank-specific parser (e.g., `ChaseParser`, `HDFCParser`) implements its own extraction logic.
+* A central router automatically detects the bank and invokes the correct parser.
+
+This design ensures:
+
+* High maintainability
+* Easy extensibility
+* Clean separation of concerns
+
+---
+
+## Installation
+
+### Clone the Repository
+
+```bash
+git clone https://github.com/yourusername/statement-parser.git
 cd statement-parser
-Install dependencies:
+```
+
+### Install Dependencies
+
+```bash
 pip install pdfplumber
+```
 
+---
 
-Usage
-Place your PDF statement in the project directory.
+## Usage
 
-Update the filename variable in the if __name__ == "__main__": block of sure-financials.py.
+1. Place your credit card statement PDF inside the project directory.
+2. Open `sure-financials.py` and update the `filename` variable inside:
 
-Run the script: python sure-financials.py
+```python
+if __name__ == "__main__":
+    filename = "your_statement.pdf"
+```
 
+3. Run the parser:
 
+```bash
+python sure-financials.py
+```
 
-Example Output
-The parser returns a clean Python dictionary ready for JSON serialization or database entry.
+---
 
-1. Chase Bank Example
-Input: chase_statement.pdf
+## Example Output
 
+The parser returns a clean **Python dictionary**, ready for:
+
+* JSON serialization
+* Database insertion
+* API responses
+
+---
+
+### Chase Bank Example
+
+**Input:** `chase_statement.pdf`
+
+```json
 {
   "bank_name": "Chase Bank",
   "card_variant": "Chase Credit Card",
@@ -63,9 +134,15 @@ Input: chase_statement.pdf
   "total_balance": "1,258.56",
   "transaction_info": "Total Purchases: $1,258.56"
 }
+```
 
-2. HDFC Bank Example
-Input: hdfc_statement.pdf
+---
+
+### HDFC Bank Example
+
+**Input:** `hdfc_statement.pdf`
+
+```json
 {
   "bank_name": "HDFC Bank",
   "card_variant": "HDFC Credit Card",
@@ -75,3 +152,31 @@ Input: hdfc_statement.pdf
   "total_balance": "22,935.00",
   "transaction_info": "Summary not detected"
 }
+```
+
+---
+
+## Future Enhancements
+
+* Export output directly to JSON / CSV
+* Database integration (PostgreSQL / MongoDB)
+* CLI support for batch PDF processing
+* OCR support for scanned statements
+
+---
+
+## License
+
+This project is open-source and available under the **MIT License**.
+
+---
+
+## Contributing
+
+Contributions are welcome! Feel free to:
+
+* Add support for new banks
+* Improve regex accuracy
+* Optimize parsing performance
+
+Submit a pull request or open an issue 🚀
